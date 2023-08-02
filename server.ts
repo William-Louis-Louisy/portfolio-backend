@@ -22,6 +22,7 @@ app.use(
       "*",
       "localhost:4200",
       "http://localhost:4200",
+      "212.227.70.139",
       "https://william-louis-louisy-portfolio.vercel.app",
       "william-louis-louisy-portfolio.vercel.app",
     ],
