@@ -107,6 +107,46 @@ export const projectController = {
   },
 
   // UPDATE PERSONAL PROJECT
+  updatePersonalProject: async function (req: Request, res: Response) {
+    const { id } = req.params;
+    const {
+      name,
+      description,
+      short_description,
+      description_fr,
+      short_description_fr,
+      stack,
+      features,
+      date,
+      image,
+      github,
+      link,
+    } = req.body;
+
+    try {
+      const project = await personalProjectModels.findByIdAndUpdate(id, {
+        name,
+        description,
+        short_description,
+        description_fr,
+        short_description_fr,
+        stack,
+        features,
+        date,
+        image,
+        github,
+        link,
+      });
+
+      res.status(200).json({
+        status: 200,
+        data: project,
+        message: "Project successfully updated",
+      });
+    } catch (err) {
+      res.status(400).json({ error: err });
+    }
+  },
 
   // DELETE PERSONAL PROJECT
 
