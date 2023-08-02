@@ -18,7 +18,13 @@ const app = express();
 // MIDDLEWARE
 app.use(
   cors({
-    origin: ["*", "localhost:4200", "http://localhost:4200"],
+    origin: [
+      "*",
+      "localhost:4200",
+      "http://localhost:4200",
+      "https://william-louis-louisy-portfolio.vercel.app",
+      "william-louis-louisy-portfolio.vercel.app",
+    ],
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     credentials: true,
     allowedHeaders: [
