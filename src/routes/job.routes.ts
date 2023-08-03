@@ -12,4 +12,10 @@ jobRouter.get("/jobs", jobController.getAllJobs);
 // Get job by id
 jobRouter.get("/job/:id", jobController.getOneJob);
 
+// Update job
+jobRouter.put("/job/:id", jobController.updateJob);
+
+// Delete job
+jobRouter.delete("/job/:id", jobController.deleteJob);
+
 export default jobRouter;
