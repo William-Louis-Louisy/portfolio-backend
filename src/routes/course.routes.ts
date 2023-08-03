@@ -12,4 +12,10 @@ courseRouter.get("/courses", courseController.getAllCourses);
 // Get course by id
 courseRouter.get("/course/:id", courseController.getOneCourse);
 
+// Update course
+courseRouter.put("/course/:id", courseController.updateCourse);
+
+// Delete course
+courseRouter.delete("/course/:id", courseController.deleteCourse);
+
 export default courseRouter;

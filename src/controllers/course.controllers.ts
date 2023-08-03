@@ -81,8 +81,60 @@ export const courseController = {
   },
 
   // UPDATE COURSE
-  updateCourse: async function (req: Request, res: Response) {},
+  updateCourse: async function (req: Request, res: Response) {
+    const {
+      school,
+      logo,
+      title,
+      title_fr,
+      startDate,
+      endDate,
+      description,
+      description_fr,
+    } = req.body;
+
+    try {
+      if (
+        !school ||
+        !logo ||
+        !title ||
+        !title_fr ||
+        !startDate ||
+        !endDate ||
+        !description ||
+        !description_fr
+      ) {
+        return res.status(400).json({ error: "Please fill in all fields" });
+      }
+
+      const course = await courseModels.findByIdAndUpdate(
+        req.params.id,
+        {
+          school,
+          logo,
+          title,
+          title_fr,
+          startDate,
+          endDate,
+          description,
+          description_fr,
+        },
+        { new: true }
+      );
+
+      res.status(200).json(course);
+    } catch (err) {
+      res.status(400).json({ error: err });
+    }
+  },
 
   // DELETE COURSE
-  deleteCourse: async function (req: Request, res: Response) {},
+  deleteCourse: async function (req: Request, res: Response) {
+    try {
+      const course = await courseModels.findByIdAndDelete(req.params.id);
+      res.status(200).json(course);
+    } catch (err) {
+      res.status(400).json({ error: err });
+    }
+  },
 };

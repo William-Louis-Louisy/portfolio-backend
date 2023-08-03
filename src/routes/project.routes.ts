@@ -23,6 +23,18 @@ projectRouter.get(
   projectController.getPersonalProjectById
 );
 
+// Update personal project
+projectRouter.put(
+  "/personal-project/:id",
+  projectController.updatePersonalProject
+);
+
+// Delete personal project
+projectRouter.delete(
+  "/personal-project/:id",
+  projectController.deletePersonalProject
+);
+
 // ----------------------------
 
 // Create professional project
@@ -41,6 +53,18 @@ projectRouter.get(
 projectRouter.get(
   "/professional-project/:id",
   projectController.getProfessionalProjectById
+);
+
+// Update professional project
+projectRouter.put(
+  "/professional-project/:id",
+  projectController.updateProfessionalProject
+);
+
+// Delete professional project
+projectRouter.delete(
+  "/professional-project/:id",
+  projectController.deleteProfessionalProject
 );
 
 // ----------------------------
