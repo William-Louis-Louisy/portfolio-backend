@@ -149,6 +149,20 @@ export const projectController = {
   },
 
   // DELETE PERSONAL PROJECT
+  deletePersonalProject: async function (req: Request, res: Response) {
+    const { id } = req.params;
+
+    try {
+      await personalProjectModels.findByIdAndDelete(id);
+
+      res.status(200).json({
+        status: 200,
+        message: "Project successfully deleted",
+      });
+    } catch (err) {
+      res.status(400).json({ error: err });
+    }
+  },
 
   // ------------------------------
 
@@ -243,6 +257,60 @@ export const projectController = {
       }
 
       res.status(200).json(project);
+    } catch (err) {
+      res.status(400).json({ error: err });
+    }
+  },
+
+  // UPDATE PROFESSIONAL PROJECT
+  updateProfessionalProject: async function (req: Request, res: Response) {
+    const { id } = req.params;
+    const {
+      name,
+      description,
+      description_fr,
+      short_description,
+      short_description_fr,
+      stack,
+      tasks,
+      date,
+      image,
+    } = req.body;
+
+    try {
+      const project = await professionalProjectModels.findByIdAndUpdate(id, {
+        name,
+        description,
+        description_fr,
+        short_description,
+        short_description_fr,
+        stack,
+        tasks,
+        date,
+        image,
+      });
+
+      res.status(200).json({
+        status: 200,
+        data: project,
+        message: "Project successfully updated",
+      });
+    } catch (err) {
+      res.status(400).json({ error: err });
+    }
+  },
+
+  // DELETE PROFESSIONAL PROJECT
+  deleteProfessionalProject: async function (req: Request, res: Response) {
+    const { id } = req.params;
+
+    try {
+      await professionalProjectModels.findByIdAndDelete(id);
+
+      res.status(200).json({
+        status: 200,
+        message: "Project successfully deleted",
+      });
     } catch (err) {
       res.status(400).json({ error: err });
     }

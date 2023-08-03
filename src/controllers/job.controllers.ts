@@ -72,6 +72,60 @@ export const jobController = {
   },
 
   // UPDATE JOB
+  updateJob: async function (req: Request, res: Response) {
+    const {
+      company,
+      logo,
+      title,
+      title_fr,
+      startDate,
+      endDate,
+      description,
+      description_fr,
+    } = req.body;
+
+    try {
+      if (
+        !company ||
+        !logo ||
+        !title ||
+        !title_fr ||
+        !startDate ||
+        !endDate ||
+        !description ||
+        !description_fr
+      ) {
+        return res.status(400).json({ error: "Please fill in all fields" });
+      }
+
+      const job = await jobModels.findByIdAndUpdate(
+        req.params.id,
+        {
+          company,
+          logo,
+          title,
+          title_fr,
+          startDate,
+          endDate,
+          description,
+          description_fr,
+        },
+        { new: true }
+      );
+
+      res.status(201).json(job);
+    } catch (err) {
+      res.status(400).json({ error: err });
+    }
+  },
 
   // DELETE JOB
+  deleteJob: async function (req: Request, res: Response) {
+    try {
+      const job = await jobModels.findByIdAndDelete(req.params.id);
+      res.status(200).json(job);
+    } catch (err) {
+      res.status(400).json({ error: err });
+    }
+  },
 };
