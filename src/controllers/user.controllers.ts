@@ -50,14 +50,15 @@ export const userController = {
       res.cookie("jwt", token, {
         httpOnly: true,
         maxAge: maxAge * 1000,
-        secure: process.env.NODE_ENV === "production",
-        domain: ".localhost",
+        secure: true,
+        domain: ".check-this-one.com",
       });
       res.status(200).json({
         _id: user._id,
         username: user.username,
         email: user.email,
         role: user.role,
+        token: token,
       });
     } catch (err) {
       res.status(400).json({ error: err });
