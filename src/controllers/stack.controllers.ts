@@ -37,4 +37,58 @@ export const stackController = {
       res.status(400).json({ error: err });
     }
   },
+
+  // GET STACK BY ID
+  getStackById: async function (req: Request, res: Response) {
+    try {
+      const stack = await stackModels.findById(req.params.id);
+
+      if (!stack) {
+        return res.status(404).json({ error: "No stack found" });
+      }
+
+      res.status(200).json(stack);
+    } catch (err) {
+      res.status(400).json({ error: err });
+    }
+  },
+
+  // UPDATE STACK
+  updateStack: async function (req: Request, res: Response) {
+    const { name, icon } = req.body;
+
+    try {
+      if (!name) {
+        return res.status(400).json({ error: "Please fill in all fields" });
+      }
+
+      const stack = await stackModels.findByIdAndUpdate(
+        req.params.id,
+        {
+          name,
+          icon,
+        },
+        { new: true }
+      );
+
+      res.status(200).json(stack);
+    } catch (err) {
+      res.status(400).json({ error: err });
+    }
+  },
+
+  // DELETE STACK
+  deleteStack: async function (req: Request, res: Response) {
+    try {
+      const stack = await stackModels.findByIdAndDelete(req.params.id);
+
+      if (!stack) {
+        return res.status(404).json({ error: "No stack found" });
+      }
+
+      res.status(200).json({ message: "Stack successfully deleted" });
+    } catch (err) {
+      res.status(400).json({ error: err });
+    }
+  },
 };

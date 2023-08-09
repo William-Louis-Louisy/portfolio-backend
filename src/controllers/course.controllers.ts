@@ -19,17 +19,6 @@ export const courseController = {
     } = req.body;
 
     try {
-      // Verify that user is admin
-      // const token = req.cookies.jwt;
-      // const decodedToken = jwt.verify(
-      //   token,
-      //   process.env.JWT_SECRET!
-      // ) as JwtPayload;
-      // const isAdmin = decodedToken.isAdmin;
-      // if (!isAdmin) {
-      //   return res.status(401).json({ error: "Unauthorized" });
-      // }
-
       if (
         !school ||
         !logo ||

@@ -1,12 +1,28 @@
 import { stackController } from "../controllers/stack.controllers";
+import { verifyToken } from "../middlewares/verifyToken.middleware";
 
 const express = require("express");
 const stackRouter = express.Router();
 
-// Create stack
-stackRouter.post("/stack", stackController.createStack);
+// ------------------------------
 
-// Get all stacks
+//---- Public routes ----
+
+// Get all stack items
 stackRouter.get("/stacks", stackController.getAllStacks);
+
+// Get stack item by id
+stackRouter.get("/stack/:id", stackController.getStackById);
+
+//---- Protected routes ----
+
+// Create stack item
+stackRouter.post("/stack", verifyToken, stackController.createStack);
+
+// Update stack item
+stackRouter.put("/stack/:id", verifyToken, stackController.updateStack);
+
+// Delete stack item
+stackRouter.delete("/stack/:id", verifyToken, stackController.deleteStack);
 
 export default stackRouter;
