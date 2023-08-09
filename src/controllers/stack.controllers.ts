@@ -71,7 +71,13 @@ export const stackController = {
         { new: true }
       );
 
-      res.status(200).json(stack);
+      res
+        .status(200)
+        .json({
+          status: 200,
+          data: stack,
+          message: "Stack successfully updated",
+        });
     } catch (err) {
       res.status(400).json({ error: err });
     }

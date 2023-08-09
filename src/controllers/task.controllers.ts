@@ -51,7 +51,7 @@ const taskController = {
         return res.status(400).json({ error: "No task found" });
       }
 
-      res.status(200).json({ task });
+      res.status(200).json(task);
     } catch (err) {
       res.status(400).json({ error: err });
     }
@@ -82,7 +82,9 @@ const taskController = {
         return res.status(400).json({ error: "No task found" });
       }
 
-      res.status(200).json({ task });
+      res
+        .status(200)
+        .json({ status: 200, data: task, message: "Task updated" });
     } catch (err) {
       res.status(400).json({ error: err });
     }
