@@ -34,7 +34,7 @@ const featureController = {
         return res.status(400).json({ error: "No feature found" });
       }
 
-      res.status(200).json({ features });
+      res.status(200).json(features);
     } catch (err) {
       res.status(400).json({ error: err });
     }
@@ -49,7 +49,7 @@ const featureController = {
         return res.status(400).json({ error: "No feature found" });
       }
 
-      res.status(200).json({ feature });
+      res.status(200).json(feature);
     } catch (err) {
       res.status(400).json({ error: err });
     }
@@ -75,7 +75,11 @@ const featureController = {
         { new: true }
       );
 
-      res.status(200).json(feature);
+      res.status(200).json({
+        status: 200,
+        data: feature,
+        message: "Feature successfully updated",
+      });
     } catch (err) {
       res.status(400).json({ error: err });
     }
