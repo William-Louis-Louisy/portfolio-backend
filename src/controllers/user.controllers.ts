@@ -69,7 +69,7 @@ export const userController = {
   logout: function (req: Request, res: Response) {
     return res
       .clearCookie("jwt", {
-        domain: ".localhost",
+        domain: ".check-this-one.com",
       })
       .status(200)
       .json({ message: "Logged out" });
