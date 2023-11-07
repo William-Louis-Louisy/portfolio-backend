@@ -27,21 +27,18 @@ projectRouter.get(
 // Create personal project
 projectRouter.post(
   "/personal-project",
-  verifyToken,
   projectController.createPersonalProject
 );
 
 // Update personal project
 projectRouter.put(
   "/personal-project/:id",
-  verifyToken,
   projectController.updatePersonalProject
 );
 
 // Delete personal project
 projectRouter.delete(
   "/personal-project/:id",
-  verifyToken,
   projectController.deletePersonalProject
 );
 

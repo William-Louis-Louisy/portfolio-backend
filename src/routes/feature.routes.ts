@@ -17,16 +17,12 @@ featureRouter.get("/feature/:id", featureController.getFeatureById);
 //---- Protected routes ----
 
 // Create feature
-featureRouter.post("/feature", verifyToken, featureController.createFeature);
+featureRouter.post("/feature", featureController.createFeature);
 
 // Update feature
-featureRouter.put("/feature/:id", verifyToken, featureController.updateFeature);
+featureRouter.put("/feature/:id", featureController.updateFeature);
 
 // Delete feature
-featureRouter.delete(
-  "/feature/:id",
-  verifyToken,
-  featureController.deleteFeature
-);
+featureRouter.delete("/feature/:id", featureController.deleteFeature);
 
 export default featureRouter;
