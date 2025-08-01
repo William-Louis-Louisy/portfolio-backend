@@ -10,7 +10,18 @@ const PersonalProjectSchema = new Schema<IPersonalProject>({
   stack: [{ type: Schema.Types.ObjectId, ref: "Stack" }],
   features: [{ type: Schema.Types.ObjectId, ref: "Feature" }],
   date: { type: String, required: true },
-  image: { type: String, required: true },
+  image: { type: String },
+  images: {
+    type: [String],
+    required: true,
+    default: function (this: any) {
+      return this.image ? [this.image] : [];
+    },
+    validate: {
+      validator: (arr: string[]) => arr.length >= 1 && arr.length <= 5,
+      message: "Array must contain 1 to 5 images.",
+    },
+  },
   github: { type: [String] },
   link: { type: String },
 });

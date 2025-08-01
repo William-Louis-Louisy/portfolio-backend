@@ -16,7 +16,8 @@ export interface IProfessionalProject extends Document {
   stack: Types.ObjectId[];
   tasks: Types.ObjectId[];
   date: string;
-  image: string;
+  image?: string;
+  images: string[];
 }
 
 export interface IPersonalProject extends Document {
@@ -28,7 +29,8 @@ export interface IPersonalProject extends Document {
   stack: Types.ObjectId[];
   features: Types.ObjectId[];
   date: string;
-  image: string;
+  image?: string;
+  images: string[];
   github: string[];
   link?: string;
 }
