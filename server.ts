@@ -25,6 +25,8 @@ app.use(
       "212.227.70.139",
       "https://william-louis-louisy-portfolio.vercel.app",
       "william-louis-louisy-portfolio.vercel.app",
+      "https://williamlouislouisy.com/",
+      "williamlouislouisy.com",
     ],
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     credentials: true,

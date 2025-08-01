@@ -18,25 +18,34 @@ export const projectController = {
       features,
       date,
       image,
+      images,
       github,
       link,
     } = req.body;
 
-    try {
-      if (
-        !name ||
-        !description ||
-        !short_description ||
-        !description_fr ||
-        !short_description_fr ||
-        !stack ||
-        !features ||
-        !date ||
-        !image
-      ) {
-        return res.status(400).json({ error: "Please fill in all fields" });
-      }
+    const imgs: string[] = [];
+    if (Array.isArray(images)) imgs.push(...images);
+    else if (image) imgs.push(image);
 
+    if (
+      !name ||
+      !description ||
+      !short_description ||
+      !description_fr ||
+      !short_description_fr ||
+      !stack ||
+      !features ||
+      !date ||
+      imgs.length < 1 ||
+      imgs.length > 5
+    ) {
+      return res.status(400).json({
+        error:
+          "PLease fill in all fields and add at least one image and a maximum of 5 images",
+      });
+    }
+
+    try {
       const project = await personalProjectModels.create({
         name,
         description,
@@ -46,7 +55,7 @@ export const projectController = {
         stack,
         features,
         date,
-        image,
+        images: imgs,
         github,
         link,
       });
@@ -63,7 +72,7 @@ export const projectController = {
       const projects = await personalProjectModels
         .find()
         .select(
-          "name short_description short_description_fr date image stack link"
+          "name short_description short_description_fr date image images stack link"
         )
         .populate({
           path: "stack",
@@ -119,9 +128,20 @@ export const projectController = {
       features,
       date,
       image,
+      images,
       github,
       link,
     } = req.body;
+
+    const imgs: string[] = [];
+    if (Array.isArray(images)) imgs.push(...images);
+    else if (image) imgs.push(image);
+
+    if (imgs.length < 1 || imgs.length > 5) {
+      return res.status(400).json({
+        error: "You can add at least one image and a maximum of 5 images",
+      });
+    }
 
     try {
       const project = await personalProjectModels.findByIdAndUpdate(id, {
@@ -133,7 +153,7 @@ export const projectController = {
         stack,
         features,
         date,
-        image,
+        images: imgs,
         github,
         link,
       });
@@ -180,23 +200,31 @@ export const projectController = {
       tasks,
       date,
       image,
+      images,
     } = req.body;
 
-    try {
-      if (
-        !name ||
-        !description ||
-        !description_fr ||
-        !short_description ||
-        !short_description_fr ||
-        !stack ||
-        !tasks ||
-        !date ||
-        !image
-      ) {
-        return res.status(400).json({ error: "Please fill in all fields" });
-      }
+    const imgs: string[] = [];
+    if (Array.isArray(images)) imgs.push(...images);
+    else if (image) imgs.push(image);
 
+    if (
+      !name ||
+      !description ||
+      !description_fr ||
+      !short_description ||
+      !short_description_fr ||
+      !stack ||
+      !tasks ||
+      !date ||
+      imgs.length < 1 ||
+      imgs.length > 5
+    ) {
+      return res.status(400).json({
+        error: "Please fill in all fields and add at least one image",
+      });
+    }
+
+    try {
       const project = await professionalProjectModels.create({
         name,
         description,
@@ -206,7 +234,7 @@ export const projectController = {
         stack,
         tasks,
         date,
-        image,
+        images: imgs,
       });
 
       res.status(201).json({ project: project._id });
@@ -220,7 +248,9 @@ export const projectController = {
     try {
       const projects = await professionalProjectModels
         .find()
-        .select("name short_description short_description_fr date image stack")
+        .select(
+          "name short_description short_description_fr date image images stack"
+        )
         .populate({
           path: "stack",
           select: "name icon",
@@ -275,7 +305,18 @@ export const projectController = {
       tasks,
       date,
       image,
+      images,
     } = req.body;
+
+    const imgs: string[] = [];
+    if (Array.isArray(images)) imgs.push(...images);
+    else if (image) imgs.push(image);
+
+    if (imgs.length < 1 || imgs.length > 5) {
+      return res.status(400).json({
+        error: "You can add at least one image and a maximum of 5 images",
+      });
+    }
 
     try {
       const project = await professionalProjectModels.findByIdAndUpdate(id, {
@@ -287,7 +328,7 @@ export const projectController = {
         stack,
         tasks,
         date,
-        image,
+        images: imgs,
       });
 
       res.status(200).json({
