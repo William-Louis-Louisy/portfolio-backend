@@ -1,5 +1,4 @@
 import { projectController } from "../controllers/project.controllers";
-import { verifyToken } from "../middlewares/verifyToken.middleware";
 
 const express = require("express");
 const projectRouter = express.Router();
@@ -65,21 +64,18 @@ projectRouter.get(
 // Create professional project
 projectRouter.post(
   "/professional-project",
-  verifyToken,
   projectController.createProfessionalProject
 );
 
 // Update professional project
 projectRouter.put(
   "/professional-project/:id",
-  verifyToken,
   projectController.updateProfessionalProject
 );
 
 // Delete professional project
 projectRouter.delete(
   "/professional-project/:id",
-  verifyToken,
   projectController.deleteProfessionalProject
 );
 
