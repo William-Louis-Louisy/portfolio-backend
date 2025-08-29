@@ -17,12 +17,12 @@ courseRouter.get("/course/:id", courseController.getOneCourse);
 //---- Protected routes ----
 
 // Create course
-courseRouter.post("/course", verifyToken, courseController.createCourse);
+courseRouter.post("/course", courseController.createCourse);
 
 // Update course
-courseRouter.put("/course/:id", verifyToken, courseController.updateCourse);
+courseRouter.put("/course/:id", courseController.updateCourse);
 
 // Delete course
-courseRouter.delete("/course/:id", verifyToken, courseController.deleteCourse);
+courseRouter.delete("/course/:id", courseController.deleteCourse);
 
 export default courseRouter;

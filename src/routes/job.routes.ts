@@ -17,12 +17,12 @@ jobRouter.get("/job/:id", jobController.getOneJob);
 //---- Protected routes ----
 
 // Create job
-jobRouter.post("/job", verifyToken, jobController.createJob);
+jobRouter.post("/job", jobController.createJob);
 
 // Update job
-jobRouter.put("/job/:id", verifyToken, jobController.updateJob);
+jobRouter.put("/job/:id", jobController.updateJob);
 
 // Delete job
-jobRouter.delete("/job/:id", verifyToken, jobController.deleteJob);
+jobRouter.delete("/job/:id", jobController.deleteJob);
 
 export default jobRouter;

@@ -17,12 +17,12 @@ taskRouter.get("/task/:id", taskController.getTaskById);
 //---- Protected routes ----
 
 // Create task
-taskRouter.post("/task", verifyToken, taskController.createTask);
+taskRouter.post("/task", taskController.createTask);
 
 // Update task
-taskRouter.put("/task/:id", verifyToken, taskController.updateTask);
+taskRouter.put("/task/:id", taskController.updateTask);
 
 // Delete task
-taskRouter.delete("/task/:id", verifyToken, taskController.deleteTask);
+taskRouter.delete("/task/:id", taskController.deleteTask);
 
 export default taskRouter;
