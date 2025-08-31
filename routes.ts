@@ -6,6 +6,7 @@ import stackRouter from "./src/routes/stack.routes";
 import courseRouter from "./src/routes/course.routes";
 import featureRouter from "./src/routes/feature.routes";
 import projectRouter from "./src/routes/project.routes";
+import contactRouter from "./src/routes/contact.routes";
 
 export function setupRoutes(app: Application) {
   app.use(jobRouter);
@@ -15,4 +16,5 @@ export function setupRoutes(app: Application) {
   app.use(courseRouter);
   app.use(featureRouter);
   app.use(projectRouter);
+  app.use(contactRouter);
 }
