@@ -15,28 +15,33 @@ mongoose
 
 const app = express();
 
+const allowedOrigins = [
+  "https://www.williamlouislouisy.com",
+  "https://williamlouislouisy.com",
+  "https://william-louis-louisy-portfolio.vercel.app",
+  "http://localhost:3000",
+  "http://127.0.0.1:3000",
+  "http://localhost:4200",
+];
+
 // MIDDLEWARE
-app.use(
-  cors({
-    origin: [
-      "*",
-      "localhost:4200",
-      "http://localhost:4200",
-      "212.227.70.139",
-      "https://william-louis-louisy-portfolio.vercel.app",
-      "william-louis-louisy-portfolio.vercel.app",
-      "https://williamlouislouisy.com",
-      "williamlouislouisy.com",
-    ],
-    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-    credentials: true,
-    allowedHeaders: [
-      "Content-Type",
-      "Authorization",
-      "Access-Control-Allow-Origin",
-    ],
-  })
-);
+const corsOptions: cors.CorsOptions = {
+  origin(origin, cb) {
+    if (!origin) return cb(null, true);
+    cb(null, allowedOrigins.includes(origin));
+  },
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: [
+    "Content-Type",
+    "Authorization",
+    "X-Requested-With",
+    "Accept",
+  ],
+  maxAge: 600,
+};
+
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
